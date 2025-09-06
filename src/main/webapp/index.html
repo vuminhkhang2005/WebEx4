@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Email List Form</title>
+</head>
+<body>
+<h2 style="color:teal;">Join our email list</h2>
+<p>To join our email list, enter your name and email address below.</p>
+
+<!-- Form POST -->
+<form action="TestServlet" method="post">
+    <label>Email:</label>
+    <input type="text" name="email" value="abc@gmail.com"><br><br>
+
+    <label>First Name:</label>
+    <input type="text" name="firstName" value="Anh"><br><br>
+
+    <label>Last Name:</label>
+    <input type="text" name="lastName" value="Nguyen"><br><br>
+
+    <input type="submit" value="Join Now">
+</form>
+
+<!-- Form GET -->
+<form action="TestServlet" method="get">
+    <input type="submit" value="Test GET">
+</form>
+</body>
+</html>

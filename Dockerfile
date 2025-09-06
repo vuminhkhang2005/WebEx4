@@ -1,14 +1,13 @@
-# Dùng Tomcat 9 + JDK17
+# Stage 1: Build WAR bằng Maven
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Stage 2: Chạy trên Tomcat
 FROM tomcat:9.0-jdk17-temurin
-
-# Xoá webapps mặc định
 RUN rm -rf /usr/local/tomcat/webapps/*
-
-# Copy WAR của bạn vào ROOT
-COPY target/survey.war /usr/local/tomcat/webapps/ROOT.war
-
-# Expose port 8080
+COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
-
-# Start Tomcat
 CMD ["catalina.sh", "run"]
